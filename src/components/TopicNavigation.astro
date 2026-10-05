@@ -1,0 +1,16 @@
+---
+const topics = ['AI', 'Pricing', 'Value', 'Delivery', 'Leadership', 'Organizations', 'Clients', 'Strategy'];
+---
+<section class="topic-section" aria-labelledby="topic-title">
+  <p id="topic-title">Topics</p>
+  <div class="topics">{topics.map((topic, index) => <a href="#episodes"><span>0{index + 1}</span>{topic}<b aria-hidden="true">↗</b></a>)}</div>
+</section>
+<style>
+  .topic-section { background: var(--paper); padding: clamp(66px, 9vw, 120px) clamp(20px, 4vw, 64px); }
+  .topic-section > p { font-size: .68rem; font-weight: 700; letter-spacing: .1em; margin: 0 0 24px; text-transform: uppercase; }
+  .topics { display: grid; gap: 10px; grid-template-columns: repeat(4, 1fr); }
+  .topics a { background: var(--ink); color: var(--paper); font-size: clamp(1.25rem, 2.2vw, 2.55rem); font-weight: 600; letter-spacing: -.055em; padding: 22px 16px; text-decoration: none; text-transform: uppercase; }
+  .topics span { color: var(--red); display: block; font-size: .58rem; letter-spacing: .08em; margin-bottom: 24px; }.topics b { color: var(--blue); float: right; font-size: 1.1rem; font-weight: 500; }
+  .topics a:hover { color: var(--blue); }
+  @media (max-width: 700px) { .topics { grid-template-columns: repeat(2, 1fr); } }
+</style>

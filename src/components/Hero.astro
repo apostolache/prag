@@ -1,0 +1,33 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow">A podcast for the industry in motion</p>
+    <h1 id="hero-title">The software industry is crossing a threshold.</h1>
+    <p class="intro">PRAG is a podcast about what happens when AI, economics and changing client expectations collide with the way software companies sell, price, organize and deliver their work.</p>
+    <a class="action-link" href="#episodes">Explore the podcast <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="threshold-art" aria-hidden="true">
+    <span class="vertical blue"></span><span class="vertical red"></span>
+    <span class="diagonal"></span><span class="horizontal"></span>
+    <span class="marker">01 / NOW</span>
+  </div>
+</section>
+
+<style>
+  .hero { display: grid; min-height: min(770px, calc(100vh - 100px)); overflow: hidden; position: relative; }
+  .hero-copy { align-self: center; max-width: 1100px; padding: clamp(70px, 10vw, 154px) clamp(20px, 4vw, 64px) clamp(78px, 9vw, 126px); position: relative; z-index: 1; }
+  .eyebrow { color: var(--blue); font-size: .7rem; font-weight: 700; letter-spacing: .11em; margin: 0 0 24px; text-transform: uppercase; }
+  h1 { font-size: clamp(3.4rem, 8.9vw, 9.6rem); font-weight: 600; letter-spacing: -.065em; line-height: .83; margin: 0; max-width: 1050px; text-transform: uppercase; }
+  .intro { font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.35; margin: 43px 0 28px; max-width: 570px; }
+  .action-link { align-items: center; border-bottom: 2px solid var(--red); color: var(--ink); display: inline-flex; font-size: .74rem; font-weight: 700; letter-spacing: .09em; min-height: 44px; padding-block: 8px; text-decoration: none; text-transform: uppercase; transition: color .2s ease; }
+  .action-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+  .action-link:hover { color: var(--blue); }
+  .action-link span { color: var(--red); font-size: 1.25rem; margin-left: 8px; }
+  .threshold-art { background: var(--blue); bottom: 11%; height: 40%; pointer-events: none; position: absolute; right: 0; width: min(36vw, 480px); }
+  .vertical, .horizontal, .diagonal { display: block; position: absolute; }
+  .vertical.blue { background: var(--paper); height: 58%; left: 24%; top: -16%; width: 10px; }
+  .vertical.red { background: var(--red); bottom: -12%; height: 58%; left: 55%; top: auto; width: 22px; }
+  .horizontal, .diagonal { display: none; }
+  .threshold-art::before { background: var(--ink); content: ''; height: 108px; left: -72px; position: absolute; top: 40%; width: 108px; }
+  .marker { background: var(--ink); bottom: 22px; color: var(--paper); font-size: .58rem; font-weight: 600; letter-spacing: .12em; padding: 10px 12px; position: absolute; right: 22px; z-index: 1; }
+  @media (max-width: 700px) { .hero { min-height: 0; } .hero-copy { padding-top: 48px; } .threshold-art { bottom: 4%; height: 25%; opacity: .9; width: 65vw; } .intro { margin-top: 28px; max-width: 100%; } }
+</style>

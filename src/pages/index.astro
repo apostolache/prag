@@ -1,17 +1,65 @@
----
 
+---
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import QuestionGrid from '../components/QuestionGrid.astro';
+import HostSection from '../components/HostSection.astro';
+import EpisodeList from '../components/EpisodeList.astro';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/prag-favicon.png?v=3" />
+		<link rel="icon" type="image/svg+xml" sizes="any" href="/prag-continuum.svg?v=3" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/prag-apple-touch-icon.png?v=3" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Hello, world!</title>
+		<meta name="theme-color" content="#f5f5f0" />
+		<title>PRAG - The Software Services Podcast</title>
+		<meta name="description" content="PRAG is a podcast about the transformation of the software services industry." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<h1>Hello, world!</h1>
+		<main id="top">
+			<div class="masthead">
+				<Header />
+				<Hero />
+			</div>
+			<QuestionGrid />
+			<div id="listen">
+				<EpisodeList />
+			</div>
+			<HostSection />
+		</main>
 	</body>
 </html>
+
+<style is:global>
+	@font-face { font-family: 'Apercu'; src: local('Apercu Regular'), local('Apercu'); font-weight: 400; font-display: swap; }
+	@font-face { font-family: 'Apercu'; src: local('Apercu Medium'); font-weight: 500 600; font-display: swap; }
+	@font-face { font-family: 'Apercu'; src: local('Apercu Bold'); font-weight: 700; font-display: swap; }
+	:root { --ink: #0A0A0A; --blue: #2457FF; --orange: #FF354F; --red: var(--orange); --paper: #F5F5F0; --line-dark: rgb(10 10 10 / 18%); --line-light: rgb(10 10 10 / 20%); --body: 'Apercu', 'Work Sans', sans-serif; --display: var(--body); font-family: var(--body); }
+	* { box-sizing: border-box; }
+	html { background: var(--ink); scroll-behavior: smooth; }
+	body { background: var(--paper); color: var(--ink); margin: 0; }
+	h1, h2, h3 { font-family: var(--display); }
+	main#top h1, main#top h2, main#top h3 { font-weight: 600; letter-spacing: 0; line-height: 1.04; text-transform: none; }
+	main#top h1 { font-size: clamp(3rem, 7vw, 7rem); max-width: 1000px; }
+	main#top .intro { line-height: 1.55; }
+	main#top .closing-copy, main#top .footer-wordmark, main#top .topics a, main#top .wordmark { letter-spacing: 0; }
+	main#top .wordmark-cut::after, main#top .footer-wordmark span::after { display: none; }
+	main#top .wordmark-cut { color: var(--orange); }
+	main#top .cover-lines i { height: 36%; right: 8%; top: 18%; transform: none; width: 48px; }
+	main#top .cover-lines b { height: 48px; right: -2%; top: 52%; transform: none; width: 22%; }
+	main#top .cover-lines em { display: none; }
+	main#top .closing-art i { height: 36%; right: 9%; top: 15%; transform: none; width: 48px; }
+	main#top .closing-art b { height: 48px; right: 0; top: 48%; transform: none; width: 24%; }
+	main#top .closing-art em { display: none; }
+	@media (max-width: 700px) { main#top .hero-copy { padding-bottom: 130px; } main#top .threshold-art { bottom: 0; height: 95px; width: 32%; } main#top .threshold-art::before { height: 36px; left: -25px; width: 36px; } main#top .threshold-art .marker { display: none; } }
+	@media (max-width: 450px) { main#top h1 { font-size: 2.5rem; } }
+	@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+	::selection { background: var(--blue); color: var(--paper); }
+	.masthead { background: var(--paper); }
+</style>

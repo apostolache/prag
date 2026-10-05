@@ -1,0 +1,41 @@
+---
+interface Props { label: string; title: string; description: string; featured?: boolean; }
+const { label, title, description, featured = false } = Astro.props;
+const episodeUrl = 'https://www.youtube.com/watch?v=9J62hGda9BQ&list=RD9J62hGda9BQ&start_radio=1';
+---
+
+<article class:list={['episode-card', { featured }]}>
+  <img class="episode-thumbnail" src="/prag-episode-thumbnail.webp" alt="PRAG podcast with Andrei Postolache and Emanuel Martonca" width="1600" height="900" loading="lazy" decoding="async" />
+  <a class="episode-content" href={episodeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Play ${title} on YouTube (opens in a new tab)`}>
+    <div class="episode-topline"><span>{label}</span><span class="episode-index">Field notes / software services</span></div>
+    <div class="episode-body">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+    <span class="play-link">Play episode <span aria-hidden="true">→</span></span>
+  </a>
+</article>
+
+<style>
+  .episode-card { background: var(--ink); color: var(--paper); display: flex; flex-direction: column; isolation: isolate; overflow: hidden; position: relative; }
+  .episode-thumbnail { display: block; filter: brightness(.4); height: 100%; inset: 0; object-fit: cover; object-position: 65% center; position: absolute; width: 100%; z-index: -2; }
+  .episode-card::before, .episode-card::after { content: ''; inset: 0; opacity: .42; pointer-events: none; position: absolute; z-index: -1; }
+  .episode-card::before { background: var(--blue); clip-path: polygon(0 0, 78% 0, 36% 100%, 0 100%); }
+  .episode-card::after { background: var(--orange); clip-path: polygon(78% 0, 100% 0, 100% 100%, 36% 100%); }
+  .episode-content { color: inherit; display: flex; flex: 1; flex-direction: column; min-height: 430px; padding: 24px; position: relative; text-decoration: none; }
+  .episode-content:focus-visible { outline: 3px solid var(--paper); outline-offset: -6px; }
+  .episode-content:hover .play-link { border-color: var(--paper); }
+  .featured .episode-content { min-height: 500px; padding: clamp(25px, 3vw, 48px); }
+  .episode-topline { border-bottom: 1px solid rgb(245 245 240 / 28%); display: flex; font-size: .64rem; font-weight: 700; justify-content: space-between; letter-spacing: .1em; padding-bottom: 15px; position: relative; text-transform: uppercase; z-index: 1; }
+  .episode-index { color: var(--paper); }
+  .featured .episode-topline { border-color: rgb(245 245 240 / 28%); }
+  .featured .episode-index { color: var(--paper); }
+  .episode-body { margin: auto 0 26px; padding-top: 32px; position: relative; z-index: 1; }
+  h3 { font-size: clamp(2rem, 4vw, 4.4rem); font-weight: 600; letter-spacing: -.06em; line-height: .86; margin: 0; max-width: 800px; text-transform: uppercase; }
+  .episode-card:not(.featured) h3 { font-size: clamp(1.65rem, 2.1vw, 2.35rem); }
+  p { font-size: .98rem; line-height: 1.35; margin: 25px 0 0; max-width: 495px; }
+  .play-link { align-self: flex-start; border-bottom: 2px solid var(--red); color: var(--paper); font-size: .67rem; font-weight: 700; letter-spacing: .1em; padding-bottom: 8px; position: relative; text-transform: uppercase; z-index: 1; }
+  .play-link span { color: var(--paper); font-size: 1rem; margin-left: 6px; }
+  @media (max-width: 850px) { .featured .episode-content { min-height: 450px; } }
+  @media (max-width: 560px) { .episode-index { display: none; } .episode-content { min-height: 390px; } }
+</style>
