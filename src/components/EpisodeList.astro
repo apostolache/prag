@@ -14,6 +14,13 @@ const episodes = [
   <div class="featured-wrap"><EpisodeCard label={episodes[0][0]} title={episodes[0][1]} description={episodes[0][2]} featured /></div>
   <div class="episode-grid">{episodes.slice(1).map(([label, title, description]) => <EpisodeCard {label} {title} {description} />)}</div>
 </section>
+<script is:inline>
+  document.querySelectorAll('#episodes .episode-thumbnail').forEach((thumbnail) => {
+    thumbnail.src = Math.random() < 0.5
+      ? '/prag-episode-thumbnail.webp'
+      : '/prag-episode-thumbnail-reversed.webp';
+  });
+</script>
 <style>
   .section { padding: clamp(75px, 10vw, 140px) clamp(20px, 4vw, 64px); }.episodes { background: var(--paper); }.list-heading { align-items: flex-end; display: flex; justify-content: space-between; margin-bottom: 36px; }.eyebrow { color: var(--red); font-size: .67rem; font-weight: 700; letter-spacing: .1em; margin: 0; text-transform: uppercase; }.list-heading h2 { font-size: clamp(2.7rem, 5vw, 5rem); font-weight: 600; letter-spacing: -.06em; line-height: .8; margin: 0; text-transform: uppercase; }.episode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2px; }@media(max-width: 850px) { .episode-grid { grid-template-columns: repeat(2, 1fr); } }@media(max-width: 580px) { .list-heading { align-items: start; flex-direction: column; gap: 20px; }.episode-grid { grid-template-columns: 1fr; } }
 </style>
