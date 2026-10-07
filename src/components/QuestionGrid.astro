@@ -7,11 +7,11 @@ const questions = [
   { text: 'How does your delivery model need to change?', track: 'delivery' },
   { text: 'What are the commercial models you can choose from?', track: 'commercial' },
   { text: 'What needs to change in how teams organize and decide?', track: 'delivery' },
-  { text: 'What are the skills your employeed need?', track: 'delivery' }
+  { text: 'What are the skills your employees need?', track: 'delivery' }
 ];
 ---
 <section class="questions section" id="topics" aria-labelledby="questions-title">
-  <div class="section-heading"><p class="eyebrow">Extract the signal from the noise</p><h2 id="questions-title">The questions behind new New Operating System for Software Services:</h2></div>
+  <div class="section-heading"><p class="eyebrow">Extract the signal from the noise</p><h2 id="questions-title">The questions behind New Operating System for Software Services:</h2></div>
   <div class="question-grid">
     {questions.map((question, index) => <article class:list={['question', question.track === 'mixed' ? 'mixed-accent' : question.track === 'commercial' ? 'red-accent' : 'blue-accent']}><span>0{index + 1}</span><h3>{question.text}</h3></article>)}
   </div>
