@@ -1,0 +1,88 @@
+---
+const tracks = [
+  {
+    number: '01',
+    title: 'Pricing & Commercial',
+    person: 'Emanuel Martonca',
+    accent: 'commercial',
+    description: 'Examine what clients are buying, how value is priced, and how your commercial model allocates risk. Move beyond the choice between an hourly rate and a fixed price.',
+    focus: ['Value, positioning and pricing logic', 'Scope, assumptions and commercial risk', 'Client expectations and commercial conversations','4 hours', 'bring all your key players. no seats limit.']
+  },
+  {
+    number: '02',
+    title: 'Delivery & Organizational Change',
+    person: 'Andrei Postolache',
+    accent: 'delivery',
+    description: 'Examine the system behind the promise: how work is organized, decisions are made, and teams deliver. A different contract needs a delivery model that can support it.',
+    focus: ['Delivery practices, SDLC and methodologies', 'Team structure, roles and skills', 'Leadership and management in the new model', '4 hours', 'bring all your key players. no seats limit.']
+  }
+];
+const options = [
+  'Both Commercial & Delivery, same day or staggered',
+  'Only Commercial',
+  'Only Delivery'
+];
+---
+
+<section class="workshop" id="workshop" aria-labelledby="workshop-title">
+  <div class="workshop-heading">
+    <p class="eyebrow">Two sides of the same business</p>
+    <h2 id="workshop-title">A new Operating System for Software Services</h2>
+    <p class="workshop-intro">For software services teams who recognize the game has fundamentally changed.</p>
+  </div>
+  <div class="track-grid">
+    {tracks.map((track) => (
+      <article class:list={['track', track.accent]}>
+        <p class="track-label"><span class="track-number">{track.number}</span><span> / {track.person}</span></p>
+        <h3>{track.title}</h3>
+        <p>{track.description}</p>
+        <ul>{track.focus.map((item) => <li>{item}</li>)}</ul>
+      </article>
+    ))}
+  </div>
+  <div class="workshop-options" id="workshop-options">
+    <p class="eyebrow">Together or separately</p>
+    <h2>Choose your solution:</h2>
+    <ul>
+      {options.map((option) => <li>{option}</li>)}
+    </ul>
+    <a class="team-link" href="#team">Meet the team <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<style>
+  .workshop { padding: 96px clamp(20px, 4vw, 64px) 80px; }
+  .workshop-heading { display: grid; align-items: end; column-gap: 64px; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .eyebrow, .track-label { font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .eyebrow { color: var(--orange); margin: 0 0 24px; }
+  .workshop-heading > .eyebrow { grid-column: 1 / -1; }
+  h2 { font-size: 4rem; margin: 0; }
+  .workshop-heading h2 { max-width: 18ch; }
+  .workshop-intro { border-left: 4px solid var(--blue); font-size: 1.15rem; line-height: 1.55; max-width: 680px; margin: 0 0 4px; padding-left: 24px; }
+  .track-grid { display: grid; gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; }
+  .track { background: color-mix(in srgb, var(--blue) 28%, transparent); color: var(--ink); min-width: 0; padding: 36px; }
+  .track.commercial { background: color-mix(in srgb, var(--orange) 28%, transparent); }
+  .track-label { align-items: center; display: flex; gap: 16px; margin: 0 0 32px; }
+  .track-number { font-size: 3.5rem; font-weight: 600; letter-spacing: 0; line-height: 1; }
+  .track h3 { font-size: 2.75rem; min-height: 3.12em; margin: 0 0 24px; }
+  .track > p:not(.track-label) { font-size: 1rem; line-height: 1.6; max-width: 58ch; margin: 0; }
+  ul { list-style: square; margin: 24px 0 0; padding-left: 20px; }
+  li { line-height: 1.5; padding-left: 4px; margin-top: 10px; }
+  .track ul { list-style: none; margin-top: 32px; padding: 0; }
+  .track li { border-top: 1px solid var(--line-dark); margin: 0; padding: 14px 0; }
+  .track li:nth-last-child(2) { font-size: 1.5rem; font-weight: 600; padding-bottom: 4px; }
+  .track li:last-child { border-top: 0; font-size: .85rem; padding-top: 0; padding-bottom: 0; }
+  .workshop-options { display: grid; grid-template-columns: 1fr; margin-top: 64px; padding-top: 32px; border-top: 3px solid var(--ink); }
+  .workshop-options > .eyebrow { grid-column: 1 / -1; margin-bottom: 16px; }
+  .workshop-options h2 { font-size: 2.25rem; }
+  .workshop-options ul { margin: 24px 0 0; }
+  .workshop-options li:first-child { margin-top: 0; }
+  .team-link { align-items: center; border-bottom: 2px solid var(--orange); color: var(--ink); display: inline-flex; font-size: .8rem; font-weight: 600; gap: 12px; min-height: 44px; margin-top: 24px; text-decoration: none; }
+  .workshop-options .team-link { justify-self: start; }
+  .team-link span { color: var(--orange); font-size: 1.3rem; }
+  .team-link:hover { color: var(--blue); }
+  .team-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+  @media (max-width: 900px) { .workshop-heading { grid-template-columns: 1fr; } .workshop-intro { margin-top: 28px; } .track-grid { grid-template-columns: 1fr; } .track h3 { min-height: 0; max-width: 20ch; } .workshop-options { grid-template-columns: 1fr; } .workshop-options ul { margin-top: 24px; } }
+  @media (max-width: 700px) { .workshop { padding-block: 48px; } h2 { font-size: 2.5rem; } .track-grid { gap: 16px; margin-top: 36px; } .track { padding: 28px 24px; } .track-label { gap: 12px; margin-bottom: 24px; } .track-number { font-size: 2.75rem; } .track h3 { font-size: 2rem; } .workshop-options { margin-top: 40px; } .workshop-options h2 { font-size: 1.8rem; } }
+  @media (max-width: 360px) { .track { padding-inline: 20px; } .track h3 { font-size: 1.75rem; } }
+</style>

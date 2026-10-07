@@ -38,6 +38,24 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Contact Form
+
+The static contact form uses [FormSubmit](https://formsubmit.co/). Submissions
+are addressed to `andrei.postolache@introspecials.com`, with
+`emanuel.martonca@gmail.com` in CC. The visitor's `email` field supplies the
+Reply-To address. CAPTCHA is enabled, and the form includes a honeypot field.
+
+Before accepting enquiries on the deployed website:
+
+1. Submit the form from the deployed website to request activation.
+2. Open the FormSubmit activation email in Andrei's inbox and confirm the form.
+3. Submit another test enquiry and verify that both recipients receive it.
+
+FormSubmit handles CAPTCHA, submission errors, and its hosted confirmation page.
+No email credentials or server adapter are required. Browser validation and an
+intercepted test POST have been checked locally; actual email delivery requires
+activation and verification on the deployed site.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

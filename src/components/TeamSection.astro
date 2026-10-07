@@ -1,0 +1,90 @@
+---
+const team = [
+  {
+    name: 'Andrei Postolache',
+    role: 'Delivery & organizational change',
+    portrait: 'andrei',
+    image: '/pics/Andrei%20Postolache.jpeg',
+    linkedin: 'https://ro.linkedin.com/in/andreipostolache',
+    bio: 'Andrei is a leadership and management consultant. He brings the delivery and organizational change side of the workshop: how teams organize work, make decisions and turn commercial commitments into results. His focus is the practical work of changing the system, not just the contract.'
+  },
+  {
+    name: 'Emanuel Martonca',
+    role: 'Pricing & commercial models',
+    portrait: 'emanuel',
+    image: '/pics/Manu.jpg',
+    linkedin: 'https://ro.linkedin.com/in/emartonca',
+    bio: 'Emanuel brings the pricing and commercial side of the workshop. He explores how software services businesses define value, price their work, manage commercial risk and shape client expectations. His focus is a commercial model that fits the value being offered and the realities of delivery.'
+  }
+];
+---
+
+<section class="team-section" id="team" aria-labelledby="team-title">
+  <div class="team-heading">
+    <p class="eyebrow">Two perspectives. One practical change.</p>
+    <h2 id="team-title">The Team</h2>
+  </div>
+  <p class="team-intro">Work with us together to connect the commercial and delivery models, or separately to focus on the side you need to change.</p>
+  <div class="team-grid">
+    {team.map((person, index) => (
+      <article class="team-member">
+        <details class:list={['team-details', person.portrait]}>
+          <summary aria-label={`${person.name}, biography`} title={`Read ${person.name}'s biography`}>
+            <div class="portrait">
+              <img src={person.image} alt={person.name} loading="lazy" decoding="async" />
+              <span class="team-number" aria-hidden="true">{index + 1}</span>
+              <span class="bio-indicator" aria-hidden="true"></span>
+            </div>
+            <div class="team-copy"><h3>{person.name}</h3><p>{person.role}</p></div>
+          </summary>
+          <div class="team-bio">
+            <p>{person.bio}</p>
+            <a class="linkedin-link" href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn (opens in a new tab)`}>LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+      </article>
+    ))}
+  </div>
+</section>
+<script is:inline>
+  const teamGrid = document.querySelector('#team .team-grid');
+  if (teamGrid && Math.random() < 0.5) {
+    teamGrid.append(teamGrid.firstElementChild);
+  }
+  teamGrid?.querySelectorAll('.team-number').forEach((number, index) => {
+    number.textContent = String(index + 1);
+  });
+</script>
+<style>
+  .team-section { background: var(--ink); color: var(--paper); padding: 80px clamp(20px, 4vw, 64px); }
+  .team-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+  .eyebrow { color: var(--blue); font-size: .7rem; font-weight: 600; letter-spacing: .08em; margin: 0; text-transform: uppercase; }
+  .team-heading h2 { font-size: 4rem; margin: 0; }
+  .team-intro { color: rgb(245 245 240 / 78%); font-size: 1rem; line-height: 1.6; max-width: 62ch; margin: 28px 0 36px; }
+  .team-grid { display: grid; gap: 40px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team-details { --team-accent: var(--blue); }
+  .team-details.emanuel { --team-accent: var(--orange); }
+  summary { cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary:focus-visible { outline: 3px solid var(--team-accent); outline-offset: 6px; }
+  .portrait { aspect-ratio: 1.18; background: var(--ink); overflow: hidden; position: relative; }
+  .portrait img { display: block; filter: grayscale(1); height: 100%; object-fit: cover; object-position: center top; position: absolute; width: 100%; }
+  .team-number { background: var(--ink); color: var(--paper); font-size: .65rem; font-weight: 600; left: 16px; padding: 7px 10px; position: absolute; top: 15px; }
+  .bio-indicator { align-items: center; background: var(--team-accent); bottom: 16px; display: flex; font-size: 1.8rem; height: 44px; justify-content: center; line-height: 1; position: absolute; right: 16px; transition: background .15s ease, color .15s ease; width: 44px; }
+  .bio-indicator::after { content: '+'; }
+  details[open] .bio-indicator::after { content: '-'; }
+  summary:hover .bio-indicator { background: var(--paper); color: var(--ink); }
+  .team-copy { padding-top: 17px; }
+  .team-copy h3 { font-size: 2rem; margin: 0; }
+  .team-copy p { color: rgb(245 245 240 / 78%); font-size: .9rem; line-height: 1.5; margin: 9px 0 0; }
+  .team-bio { border-left: 3px solid var(--team-accent); margin-top: 24px; padding: 4px 0 4px 20px; }
+  .team-bio p { font-size: 1rem; line-height: 1.6; margin: 0; max-width: 56ch; }
+  .linkedin-link { align-items: center; color: var(--paper); display: inline-flex; font-size: .9rem; gap: 8px; margin-top: 12px; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
+  .linkedin-link span { color: var(--team-accent); }
+  .linkedin-link:hover { text-decoration-thickness: 2px; }
+  .linkedin-link:focus-visible { outline: 3px solid var(--team-accent); outline-offset: 4px; }
+  details[open] .team-bio { animation: reveal-bio .2s ease-out; }
+  @keyframes reveal-bio { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .team-section { padding-block: 48px; } .team-heading { align-items: start; flex-direction: column; } .team-heading h2 { font-size: 3rem; } .team-grid { grid-template-columns: 1fr; gap: 36px; } .team-copy h3 { font-size: 1.5rem; } }
+  @media (prefers-reduced-motion: reduce) { details[open] .team-bio { animation: none; } .bio-indicator { transition: none; } }
+</style>

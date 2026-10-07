@@ -1,18 +1,18 @@
 ---
-const navigation = ['Episodes', 'About', 'Topics'];
+const navigation = [
+  { label: 'Workshop', href: '#workshop' },
+  { label: 'Questions', href: '#topics' },
+  { label: 'The Team', href: '#team' }
+];
 ---
 
 <header class="site-header">
-  <a class="brand-lockup" href="#top" aria-label="PRAG home">
-    <img class="brand-symbol" src="/prag-continuum.svg" alt="" width="44" height="44" />
-    <span class="wordmark">
-      <span>PR</span><span>A</span><span>G</span>
-      <small>The software services podcast</small>
-    </span>
+  <a class="brand-lockup" href="#top" aria-label="Workshop home">
+    <span class="site-description">Commercial &amp; delivery transformation for Software Services in the age of AI</span>
   </a>
   <nav aria-label="Primary navigation">
-    {navigation.map((item) => <a href={`#${item.toLowerCase()}`}>{item}</a>)}
-    <a class="listen-button" href="#episodes">Listen <span aria-hidden="true">↗</span></a>
+    {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a class="contact-button" href="#contact">Contact <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 
@@ -26,8 +26,6 @@ const navigation = ['Episodes', 'About', 'Topics'];
     text-decoration: none;
   }
 
-  .brand-symbol { display: block; flex: 0 0 44px; }
-
   .site-header {
     align-items: center;
     display: flex;
@@ -36,58 +34,36 @@ const navigation = ['Episodes', 'About', 'Topics'];
     padding: 24px clamp(20px, 4vw, 64px);
   }
 
-  .wordmark {
+  .site-description {
     color: var(--ink);
     display: block;
-    font-size: 1.55rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    line-height: 0.88;
-    text-decoration: none;
-  }
-
-  .wordmark-cut {
-    color: var(--blue);
-    position: relative;
-  }
-
-  .wordmark-cut::after {
-    background: var(--red);
-    content: '';
-    height: 2px;
-    left: -3px;
-    position: absolute;
-    top: 48%;
-    transform: rotate(-50deg);
-    width: 21px;
-  }
-
-  .wordmark small {
-    display: block;
-    font-size: 0.44rem;
-    font-weight: 600;
-    grid-column: 1 / -1;
     letter-spacing: 0.1em;
-    line-height: 1.2;
-    margin-top: 7px;
+    line-height: 1.4;
+    max-width: 220px;
     text-transform: uppercase;
   }
 
   nav { align-items: center; display: flex; gap: clamp(16px, 2.5vw, 38px); }
   nav a { align-items: center; color: var(--ink); display: inline-flex; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; min-height: 44px; text-decoration: none; text-transform: uppercase; white-space: nowrap; }
-  nav a:not(.listen-button):hover { color: var(--blue); }
+  nav a:not(.contact-button):hover { color: var(--blue); }
   .brand-lockup:focus-visible, nav a:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
 
-  nav a.listen-button {
+  nav a.contact-button {
     background: var(--ink);
     color: var(--paper);
     padding: 10px 13px;
   }
 
-  .listen-button span { color: var(--red); font-size: 1rem; margin-left: 6px; }
+  .contact-button span { color: var(--red); font-size: 1rem; margin-left: 6px; }
 
   @media (max-width: 700px) {
     .site-header { flex-wrap: wrap; gap: 12px; padding-block: 17px; }
     nav { flex-basis: 100%; gap: 8px; justify-content: space-between; }
+  }
+  @media (max-width: 360px) {
+    nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    nav a { justify-content: center; }
   }
 </style>
