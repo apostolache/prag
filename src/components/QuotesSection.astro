@@ -1,0 +1,69 @@
+---
+const quotes: { text: string; author: string; track: 'commercial' | 'delivery' | 'mixed' }[] = [ 
+  { text: 'More than 70% of enterprise decision makers prefer output or outcome-linked commercial models for customer-experience and business-process services.', author: 'Boston Consulting Group', track: 'mixed' },
+  { text: 'Human roles will concentrate in architecture, product judgment, and system design.', author: 'McKinsey & Company', track: 'delivery' },
+  { text: 'For three decades, the IT and business services industry has run on a familiar formula: scale headcount, drive utilization, price work by time and materials. That model built a $1.6 trillion industry. It will not carry the next one.', author: 'IDC', track: 'mixed' },
+  { text: 'The most significant change in software delivery is not that AI can generate code faster. It is that AI changes the economics of how delivery organizations are structured.', author: 'IBM', track: 'delivery' },
+  { text: 'While 49% of contracts are still tied to headcount today, only 16% of the leaders expect to use this model within two years.', author: 'HFS', track: 'commercial' },
+  { text: 'The most significant change in software delivery is not that AI can generate code faster. It is that AI changes the economics of how delivery organizations are structured.', author: 'IBM', track: 'delivery' },
+  { text: 'Buyers are moving from time and materials to outcomes and impact, from expertise access to insight and enablement, and from project delivery to platform-based action.', author: 'IDC', track: 'commercial' },
+  { text: 'Winners will help clients redesign accountability models rather than simply build better agents.', author: 'HSF', track: 'mixed' },
+  { text: '56% of enterprises prefer hybrid pricing combining a base fee with an outcome component. Only 18% still prefer pure T&M.', author: 'HFS', track: 'commercial' }
+    ];
+const entries = quotes.filter((quote) => quote.text.trim() && quote.author.trim());
+---
+
+<section class="quotes-section" id="quotes" aria-label="Quotes" hidden={entries.length === 0}>
+  <ul class="quotes-list" aria-live="off">
+    {entries.map((quote, index) => (
+      <li class:list={['quote', quote.track, { active: index === 0 }]} aria-hidden={index !== 0}>
+        <figure>
+          <blockquote><p>{quote.text}</p></blockquote>
+          <figcaption>{quote.author}</figcaption>
+        </figure>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script is:inline>
+  (() => {
+    const section = document.querySelector('#quotes');
+    if (!section) return;
+    const quotes = [...section.querySelectorAll('.quote')];
+    if (quotes.length < 2) return;
+    let index = 0;
+    let timer;
+
+    const advance = () => {
+      quotes[index].classList.remove('active');
+      quotes[index].setAttribute('aria-hidden', 'true');
+      index = (index + 1) % quotes.length;
+      quotes[index].classList.add('active');
+      quotes[index].setAttribute('aria-hidden', 'false');
+    };
+    const schedule = () => {
+      clearInterval(timer);
+      if (!document.hidden) timer = setInterval(advance, 5000);
+    };
+    document.addEventListener('visibilitychange', schedule);
+    schedule();
+  })();
+</script>
+
+<style>
+  .quotes-section { background: color-mix(in srgb, var(--blue) 8%, var(--paper)); border-top: 1px solid var(--line-dark); padding: 64px clamp(20px, 4vw, 64px); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  .quotes-section[hidden] { display: none; }
+  .quotes-list { display: grid; list-style: none; margin: 0; overflow: hidden; padding: 0; }
+  .quote { align-self: center; grid-area: 1 / 1; min-width: 0; visibility: hidden; }
+  .quote.active { animation: quote-swipe 420ms cubic-bezier(.22, .61, .36, 1) both; visibility: visible; }
+  @keyframes quote-swipe { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  figure { border-left: 6px solid var(--orange); margin: 0; padding-left: 32px; }
+  .quote.delivery figure { border-left-color: var(--blue); }
+  .quote.mixed figure { border-image: linear-gradient(to bottom, var(--orange) 50%, var(--blue) 50%) 1; }
+  blockquote { margin: 0; max-width: 1000px; }
+  blockquote p { font-size: 2.25rem; font-weight: 500; line-height: 1.3; margin: 0; overflow-wrap: anywhere; }
+  figcaption { font-size: .9rem; font-weight: 600; line-height: 1.5; margin-top: 24px; }
+  @media (max-width: 700px) { .quotes-section { padding-block: 48px; } figure { padding-left: 20px; } blockquote p { font-size: 1.5rem; } }
+  @media (prefers-reduced-motion: reduce) { .quote.active { animation: none; } }
+</style>

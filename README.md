@@ -38,6 +38,22 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Rotating Quotes
+
+Edit the `quotes` array at the top of `src/components/QuotesSection.astro`:
+
+```ts
+const quotes: { text: string; author: string }[] = [
+	{ text: 'Your first quote.', author: 'Author name' },
+	{ text: 'Your next quote.', author: 'Another author' }
+];
+```
+
+The section sits between the workshop and team. It advances every five seconds
+without visible controls. Rotation stops while the browser tab is hidden.
+An empty list hides the section; a single quote stays visible without rotating.
+Entries with empty text or author fields are ignored.
+
 ## Contact Form
 
 The static contact form uses [FormSubmit](https://formsubmit.co/). Submissions
