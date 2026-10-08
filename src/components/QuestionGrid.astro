@@ -11,7 +11,7 @@ const questions = [
 ];
 ---
 <section class="questions section" id="topics" aria-labelledby="questions-title">
-  <div class="section-heading"><p class="eyebrow">Extract the signal from the noise</p><h2 id="questions-title">The questions behind New Operating System for Software Services:</h2></div>
+  <div class="section-heading"><p class="eyebrow">Extract the signal from the noise</p><h2 id="questions-title">The questions behind the change:</h2></div>
   <div class="question-grid">
     {questions.map((question, index) => <article class:list={['question', question.track === 'mixed' ? 'mixed-accent' : question.track === 'commercial' ? 'red-accent' : 'blue-accent']}><span>0{index + 1}</span><h3>{question.text}</h3></article>)}
   </div>
